@@ -139,6 +139,14 @@ Calling the above function sets the following libcurl options:
 * `CURLOPT_SSL_PERMUTE_EXTENSIONS` (non-standard TLS options created for this project).
 Note that if you call `curl_easy_setopt()` later with one of the above it will override the options set by `curl_easy_impersonate()`.
 
+### httpx-style library output
+This tree also includes an optional high-level C helper in
+[`httpxlib`](httpxlib) for applications that want httpx-style probing on top of
+libcurl-impersonate instead of only raw curl transfers. It provides JSONL output,
+input expansion, matchers, filters, extractors, redirect-chain capture, and
+request configuration through a reusable API (`ci_httpx.h`) plus a small
+verification CLI (`httpxlib/ci-httpx`).
+
 ### Using CURL_IMPERSONATE env var
 If your application uses `libcurl` already, you can replace the existing library at runtime with `LD_PRELOAD` (Linux only). You can then set the `CURL_IMPERSONATE` env var. For example:
 ```bash
